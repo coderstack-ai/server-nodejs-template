@@ -1,0 +1,1 @@
+// console.log("This folder stores middleware, which is used by multiple routes, such as password verification, token verification and waiting.")

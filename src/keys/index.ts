@@ -1,0 +1,1 @@
+// console.log("This folder stores the private key and public key of the token.")
