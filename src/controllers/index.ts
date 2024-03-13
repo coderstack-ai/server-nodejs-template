@@ -1,1 +1,0 @@
-// console.log("This folder stores controllers (or processors) that handle API requests. Generally, there are as many controllers as there are routes.")
