@@ -37,14 +37,24 @@
 │  ├─configs
 
 │  ├─controllers
+
 │  ├─dal
+
 │  ├─keys
+
 │  ├─middlewares
+
 │  ├─models
+
 │  │  ├─mariadb
 
 │  │  └─mongodb
+
 │  ├─routers
+
 │  ├─services
+
 │  └─utils
+
 └─uploads
+
