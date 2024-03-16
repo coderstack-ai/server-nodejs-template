@@ -1,16 +1,26 @@
-const userService = require('../services/UserService');
+/**
+ * 
+ */
 
-class UserController {
-  async register(ctx) {
+const {
+    USER_REGISTER_SUCCESS,
+    USER_REGISTER_ERROR
+  } = require("../utils/bodycode")
+const userService = require('../services/user.service');
+
+/**
+ * 注册用户名密码
+ *
+ * @param {*} ctx
+ */
+ async function register(ctx) {
     try {
-      const user = await userService.register(ctx.request.body);
-      ctx.status = 201; // Created
-      ctx.body = user;
+        const { username, password } = ctx.request.body;
+        const user = await userService.createUser(username, password);
+        ctx.body = USER_REGISTER_SUCCESS(user);
     } catch (error) {
-      ctx.status = 400; // Bad Request
-      ctx.body = { error: error.message };
+        ctx.body = USER_REGISTER_ERROR(error.message)
     }
-  }
-}
+};
 
-module.exports = new UserController();
+module.exports = { register };

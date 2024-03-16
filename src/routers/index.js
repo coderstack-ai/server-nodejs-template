@@ -5,12 +5,12 @@ function registerRouters(app) {
   const files = fs.readdirSync(__dirname)
   
   files.forEach(file => {
-    const router = require(path.join(__dirname, file))
-    app.use(router.routes())
-    app.use(router.allowedMethods())
+    if (file.endsWith("router.js")) {
+      const router = require(path.join(__dirname, file))
+      app.use(router.routes())
+      app.use(router.allowedMethods())
+    }
   });
 }
 
-module.exports = { 
-  registerRouters 
-}
+module.exports = registerRouters 
