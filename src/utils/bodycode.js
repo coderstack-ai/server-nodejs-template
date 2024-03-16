@@ -9,14 +9,8 @@ const USER_REGISTER_SUCCESS = (user) => { return { code: 0, message: "用户注�
 const USER_REGISTER_ERROR = (msg) => { return { code: 0, message: msg}}
 const USER_LOGIN_SUCCESS = () => { return { code: 0, message: "用户登录成功"}}
 const USER_LOGIN_ERROR = (msg) => { return { code: 0, message: msg}}
-
-
-
-
-
-
-
-
+const USER_TOKEN_ERROR = (msg) => { return { code: 0, message: msg} }
+const FILE_UPLOAD_SUCCESS = () => { return { code: 0, message: "文件上传成功"} }
 
 module.exports = {
   USER_NAME_NONE_ERROR,
@@ -28,5 +22,7 @@ module.exports = {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_ERROR,
   USER_LOGIN_SUCCESS,
-  USER_LOGIN_ERROR
+  USER_LOGIN_ERROR,
+  USER_TOKEN_ERROR,
+  FILE_UPLOAD_SUCCESS
 }

@@ -8,9 +8,11 @@ const {
   USER_NAME_CHAR_ERROR,
   USER_PASSWORD_NONE_ERROR,
   USER_PASSWORD_LENGTH_ERROR,
-  USER_PASSWORD_CHAR_ERROR
+  USER_PASSWORD_CHAR_ERROR,
+  USER_TOKEN_ERROR
 } = require("../utils/bodycode")
 const validator = require('../utils/validator')
+const { verifyToken } = require("../utils/token")
 
 
 /**
@@ -67,7 +69,27 @@ async function validatePassword(ctx, next) {
   await next();
 }
 
+/**
+ * token合法性验证中间件
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ */
+async function validateToken(ctx, next) {
+  const token = ctx.session.token
+  
+  try {
+    const result = verifyToken(token)
+    ctx.token = result
+    return await next()
+  } catch (error) {
+    return ctx.body = USER_TOKEN_ERROR(error.message)
+  }
+}
+
 module.exports = {
   validateUsername,
-  validatePassword
+  validatePassword,
+  validateToken
 };

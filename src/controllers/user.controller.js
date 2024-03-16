@@ -5,7 +5,7 @@ const {
   USER_LOGIN_ERROR
 } = require("../utils/bodycode")
 
-const userService = require('../services/user.service');
+const userService = require('../services/user.service')
 
 /**
  * 注册用户名密码
@@ -29,9 +29,13 @@ async function register(ctx) {
  */
 async function login(ctx) {
   try {
-    const { username, password } = ctx.request.body;
-    await userService.loginUser(username, password);
-    ctx.body = USER_LOGIN_SUCCESS();
+    const { username, password } = ctx.request.body
+    const token = await userService.loginUser(username, password)
+    // console.log(token)
+    // 设置cookie
+    ctx.session.token = token
+
+    ctx.body = USER_LOGIN_SUCCESS()
   } catch (error) {
     ctx.body = USER_LOGIN_ERROR(error.message)
   }
