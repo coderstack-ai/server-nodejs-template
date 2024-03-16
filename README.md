@@ -32,29 +32,32 @@
 
 # 2. 目录结构
 
+├─public  静态web文件
+
 ├─src
 
-│  ├─configs
+│  ├─configs    配置，全局配置，数据库配置
 
-│  ├─controllers
+│  ├─controllers  控制层
 
-│  ├─dal
+│  ├─dal   数据访问层
 
-│  ├─keys
+│  ├─keys    token的公钥和私钥
 
-│  ├─middlewares
+│  ├─middlewares   其他复用中间件
 
-│  ├─models
+│  ├─models     数据库模型
 
-│  │  ├─mariadb
+│  │  ├─mariadb    mariadb数据库
 
-│  │  └─mongodb
+│  │  └─mongodb    mongodb数据库
 
-│  ├─routers
+│  ├─routers    路由层,所有API接口都在这里
 
-│  ├─services
+│  ├─services   服务层
 
-│  └─utils
+│  └─utils       工具函数包含密码加密验证等
 
-└─uploads
+└─uploads    上传文件保存文件夹
 
+└─.env          全局配置文件，服务器地址和端口
