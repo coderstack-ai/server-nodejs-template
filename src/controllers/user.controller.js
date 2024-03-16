@@ -1,11 +1,10 @@
-/**
- * 
- */
-
 const {
-    USER_REGISTER_SUCCESS,
-    USER_REGISTER_ERROR
-  } = require("../utils/bodycode")
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_ERROR,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_ERROR
+} = require("../utils/bodycode")
+
 const userService = require('../services/user.service');
 
 /**
@@ -13,14 +12,32 @@ const userService = require('../services/user.service');
  *
  * @param {*} ctx
  */
- async function register(ctx) {
-    try {
-        const { username, password } = ctx.request.body;
-        const user = await userService.createUser(username, password);
-        ctx.body = USER_REGISTER_SUCCESS(user);
-    } catch (error) {
-        ctx.body = USER_REGISTER_ERROR(error.message)
-    }
-};
+async function register(ctx) {
+  try {
+    const { username, password } = ctx.request.body;
+    const user = await userService.createUser(username, password);
+    ctx.body = USER_REGISTER_SUCCESS(user);
+  } catch (error) {
+    ctx.body = USER_REGISTER_ERROR(error.message)
+  }
+}
 
-module.exports = { register };
+/**
+ * 用户登录
+ *
+ * @param {*} ctx
+ */
+async function login(ctx) {
+  try {
+    const { username, password } = ctx.request.body;
+    await userService.loginUser(username, password);
+    ctx.body = USER_LOGIN_SUCCESS();
+  } catch (error) {
+    ctx.body = USER_LOGIN_ERROR(error.message)
+  }
+}
+
+module.exports = { 
+  register,
+  login
+};

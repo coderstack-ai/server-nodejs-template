@@ -3,14 +3,6 @@ const {
   hashPassword,
   verifyPassword
 } = require("../utils/crypto")
-/**
- * 判断用户是否已经存在于数据库中
- * @param {*} username 
- */
-async function isUserExisting(username) {
-  const user = await userDAL.findUserByUsername(username);
-  if (user) throw new Error ('Username already exists');
-}
 
 /**
  * 用户信息进行注册
@@ -20,7 +12,8 @@ async function isUserExisting(username) {
  */
 async function createUser(username, password) {
   // 检查用户名是否存在
-  await isUserExisting(username)
+  const user = await userDAL.findUserByUsername(username);
+  if (user) throw new Error ('用户名已存在');
 
   // 密码加密
   const { salt, hash } = hashPassword(password)
@@ -29,4 +22,35 @@ async function createUser(username, password) {
   return await userDAL.createUser(username, salt, hash);
 }
 
-module.exports = { createUser };
+/**
+ * 用户信息进行登录
+ * @param {*} username 
+ * @param {*} password 
+ * @returns 
+ */
+async function loginUser(username, password) {
+  // 检查用户名是否存在
+  const user = await userDAL.findUserByUsername(username);
+  if (!user) {
+    throw new Error ('用户名不存在');
+  }
+
+  // 验证密码是否匹配
+  console.log(`salt:${user.salt}  hash:${user.password}`);
+  const isPasswordMatch = verifyPassword(password, user.password, user.salt);
+  if (!isPasswordMatch) {
+      throw new Error('用户名或者密码错误');
+  }
+
+  // 生成token
+
+
+
+}
+
+
+
+module.exports = {
+  createUser,
+  loginUser
+};

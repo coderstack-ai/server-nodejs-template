@@ -1,4 +1,3 @@
-// src/dal/userDAL.js
 
 const User = require('../models/mariadb/user.model');
 
@@ -12,6 +11,17 @@ async function findUserByUsername(username) {
   const user = await User.findOne({ where: { username }});
   return user;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = {
   createUser,
