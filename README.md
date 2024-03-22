@@ -28,6 +28,7 @@
 
 * ```bash
     npm install nodemon dotenv
+    npm install svg-captcha  # 验证码
     ```
 
 # 2. 目录结构

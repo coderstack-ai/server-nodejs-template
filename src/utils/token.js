@@ -7,6 +7,12 @@ const publicKey = fs.readFileSync(path.join(__dirname, "../keys/public.key"), "u
 
 const expiresTime = 60 * 60 * 24
 
+/**
+ * 生成token
+ * @param {*} userid 
+ * @param {*} username 
+ * @returns 
+ */
 function generateToken(userid, username) {
   const payload = {
     id: userid,
@@ -19,6 +25,11 @@ function generateToken(userid, username) {
   return token
 }
 
+/**
+ * 验证token
+ * @param {*} token 
+ * @returns 
+ */
 function verifyToken(token) {
   return jwt.verify(token, publicKey, {
     algorithms: ["RS256"]

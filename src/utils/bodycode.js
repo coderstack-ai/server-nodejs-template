@@ -10,6 +10,11 @@ const USER_REGISTER_ERROR = (msg) => { return { code: 0, message: msg}}
 const USER_LOGIN_SUCCESS = () => { return { code: 0, message: "用户登录成功"}}
 const USER_LOGIN_ERROR = (msg) => { return { code: 0, message: msg}}
 const USER_TOKEN_ERROR = (msg) => { return { code: 0, message: msg} }
+
+/**
+ * 文件上传
+ * @returns 
+ */
 const FILE_UPLOAD_SUCCESS = () => { return { code: 0, message: "文件上传成功"} }
 
 module.exports = {
